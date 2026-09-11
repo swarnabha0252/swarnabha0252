@@ -74,13 +74,55 @@ I'm a sophomore studying **Civil Engineering at Jadavpur University**, and I'm a
 
 <div align="center">
 
-<img height="180" src="https://github-readme-stats.vercel.app/api?username=swarnabha0252&show_icons=true&hide_border=true&include_all_commits=true&theme=transparent" alt="GitHub Stats"/>
-
-<img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=swarnabha0252&layout=compact&hide_border=true&langs_count=8&theme=transparent" alt="Top Languages"/>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=swarnabha0252&theme=github_dark" width="95%" alt="GitHub Profile Details"/>
 
 <br><br>
 
-<img height="180" src="https://github-readme-streak-stats.herokuapp.com/?user=swarnabha0252&hide_border=true&theme=transparent" alt="GitHub Streak"/>
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=swarnabha0252&theme=github_dark" width="45%" alt="Repositories Per Language"/>
+
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=swarnabha0252&theme=github_dark" width="45%" alt="Most Commit Language"/>
+
+<br><br>
+
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=swarnabha0252&theme=github_dark" width="45%" alt="GitHub Statistics"/>
+
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=swarnabha0252&theme=github_dark" width="45%" alt="Productive Time"/>
+
+</div>
+
+<br>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12,20,30&height=45&section=header&text=Contribution%20Activity&fontSize=22&fontColor=fff" width="100%"/>
+
+<br>
+
+<div align="center">
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=swarnabha0252&bg_color=00000000&color=36BCF7&line=36BCF7&point=FFFFFF&area=true&hide_border=true" width="95%" alt="Contribution Activity Graph"/>
+
+</div>
+
+<br>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12,20,30&height=45&section=header&text=GitHub%20Achievements&fontSize=22&fontColor=fff" width="100%"/>
+
+<br>
+
+<div align="center">
+
+<img src="https://github-profile-trophy.vercel.app/?username=swarnabha0252&theme=algolia&no-frame=true&no-bg=true&margin-w=8&row=1&column=7" width="95%" alt="GitHub Trophies"/>
+
+</div>
+
+<br>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12,20,30&height=45&section=header&text=Currently%20Exploring&fontSize=22&fontColor=fff" width="100%"/>
+
+<br>
+
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=18&duration=2500&pause=700&color=36BCF7&center=true&vCenter=true&width=700&lines=Deep+Learning;Computational+Physics;Cosmology;Scientific+Machine+Learning;Algorithms+%26+Data+Structures;AI+for+Scientific+Discovery" alt="Currently Exploring"/>
 
 </div>
 
