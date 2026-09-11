@@ -71,7 +71,7 @@ I'm a sophomore studying **Civil Engineering at Jadavpur University**, and I'm a
 <img
   height="180"
   src="./profile/stats.svg"
-  alt="Swarnabha's GitHub Stats"
+  alt="GitHub Stats"
 />
 </a>
 
