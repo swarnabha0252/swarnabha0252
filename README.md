@@ -74,12 +74,6 @@ I'm a sophomore studying **Civil Engineering at Jadavpur University**, and I'm a
 
 <div align="center">
 
-<img height="180" src="https://github-readme-stats.vercel.app/api?username=swarnabha0252&show_icons=true&hide_border=true&include_all_commits=true&theme=transparent" alt="GitHub Stats"/>
-
-<img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=swarnabha0252&layout=compact&hide_border=true&langs_count=8&theme=transparent" alt="Top Languages"/>
-
-<br><br>
-
 <img height="180" src="https://github-readme-streak-stats.herokuapp.com/?user=swarnabha0252&hide_border=true&theme=transparent" alt="GitHub Streak"/>
 
 </div>
