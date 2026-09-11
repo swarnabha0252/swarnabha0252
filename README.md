@@ -1,76 +1,40 @@
+![Header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,20,30&height=200&section=header&text=Swarnabha%20Banerjee&fontSize=50&fontColor=fff&animation=twinkling)
+
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1e2327,100:2b6cb0&height=200&section=header&text=Swarnabha%20Banerjee&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Civil%20Engineering%20%2B%20Data%20Science%20%7C%20Kolkata&descAlignY=55&descSize=16" width="100%"/>
+### Civil Engineering Student & Data Science Learner
 
 </div>
 
-<div align="center">
-  <img src="https://readme-typing-svg.demolab.com/?lines=Sophomore%2C+Civil+Engineering+%40+Jadavpur+University;B.S.+Data+Science+%40+IIT+Madras+(Diploma+level);Interested+in+early+universe+cosmology+%26+computational+physics;Currently+learning+by+building%2C+one+project+at+a+time&font=Fira+Code&size=17&pause=1800&color=6C9BCF&width=560&height=40&center=true"/>
-</div>
+![About](https://capsule-render.vercel.app/api?type=rect&color=auto&height=40&section=header&text=About%20Me&fontSize=22&fontColor=fff)
 
-<br/>
+I'm a sophomore studying Civil Engineering at Jadavpur University, and I'm also pursuing a B.S. in Data Science and Applications from IIT Madras. I like taking problems from one field and solving them with tools from the other — most of my projects come from that overlap between civil engineering and machine learning.
 
-I'm a sophomore at Jadavpur University, Kolkata. I study in the Civil Engineering department. Alongside this, I'm pursuing a B.S. in Data Science and Applications from IIT Madras. That degree is structured in levels, and I'm currently at the diploma level.
+- 🏫 Studying **Civil Engineering** at **Jadavpur University, Kolkata** — also pursuing a **B.S. in Data Science** at **IIT Madras** (currently at Diploma level)
+- 🌱 Currently learning **early universe cosmology and computational physics**, alongside deep learning
+- 💬 Ask me about **concrete strength prediction with ML, stellar classification, or running ML models with ONNX Runtime Web**
+- ⚡ Ranked in the **top 4% among 100,000+ candidates** in WBJEE, and top 3% nationally in IAT and NEST
 
-The two fields don't always overlap. Most of my projects come from that gap. I take a problem I know from civil engineering and solve it with the machine learning I'm learning on the side.
+![Skills](https://capsule-render.vercel.app/api?type=rect&color=auto&height=40&section=header&text=Tech%20Stack&fontSize=22&fontColor=fff)
 
-The projects below are small and personal. Each one is finished end-to-end rather than left half-built.
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![C](https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=c&logoColor=white) ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white) ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white) ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) ![Scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white) ![Keras](https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white) ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-<br/>
-
-### Projects
-
-**Concrete Strength Estimator** (May–Jun 2026)
-An end-to-end ML application predicting concrete compressive strength from 15 mix-design parameters. Trained and tuned an XGBoost regressor to an R² of about 0.93, then exported it to ONNX and ran inference directly in the browser with ONNX Runtime Web — no backend needed. Frontend is Next.js with real-time prediction and input validation against real engineering constraints.
-[→ repository](https://github.com/swarnabha0252/concrete-strength-estimator)
-
-**Exploring Stellar Classification with Machine Learning** (Sep–Oct 2025)
-A pipeline classifying 240 stars by type, with the input data's physical validity checked against the Stefan-Boltzmann law before trusting any of it. Compared Random Forest against Logistic Regression and plotted both against each other on Hertzsprung-Russell diagrams instead of relying on a single accuracy number.
-[→ repository](https://github.com/swarnabha0252/Hertzsprung-Russell-Classification)
-
-**Heart Disease Prediction** (Feb–Mar 2026)
-A logistic regression model for heart disease prediction, built with pandas and scikit-learn, with preprocessing done carefully enough that the training numbers actually hold up on unseen data.
-[→ repository](https://github.com/swarnabha0252/Heart-Disease-Prediction)
-
-<br/>
-
-### Workshops & training
-
-- **Prof. Dwijesh Dutta Majumdar Memorial Workshop 2026**, Electronics and Communication Sciences Unit, ISI Kolkata — one day on cybernetics meeting AI, including Riemannian geometry and Grassmann manifolds in ML.
-- **CeNSE Winter School 2025**, IISc Bangalore — two-week program on nanofabrication, cleanroom protocols, and semiconductor device design. Certificate of Distinction (75%+ in the proctored assessment).
-
-<br/>
-
-### Stack
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=python,c,cpp,java,mysql,html,css,js,react,nextjs,nodejs,express,mongodb,tensorflow,git,github" />
-</p>
-
-A few libraries don't have logos on the icon set above, but I use them just as much: NumPy, Pandas, scikit-learn, Keras, XGBoost.
-
-<br/>
-
-### A few numbers, for context
-
-- Top 4% among 100,000+ candidates, WBJEE
-- Top 3% nationally in IAT and NEST
-- National Means-cum-Merit Scholarship (NMMS), 2018
-
-<br/>
+![Stats](https://capsule-render.vercel.app/api?type=rect&color=auto&height=40&section=header&text=GitHub%20Stats&fontSize=22&fontColor=fff)
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=swarnabha0252&show_icons=true&hide_border=true&theme=transparent&title_color=6C9BCF&icon_color=6C9BCF&text_color=8b949e" height="165"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=swarnabha0252&layout=compact&hide_border=true&theme=transparent&title_color=6C9BCF&text_color=8b949e" height="165"/>
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=swarnabha0252&show_icons=true&theme=github_dark&hide_border=true&bg_color=0d1117)
+
+[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=swarnabha0252&theme=github-dark-blue&hide_border=true&background=0d1117)](https://git.io/streak-stats)
+
 </div>
 
-<br/>
+![Connect](https://capsule-render.vercel.app/api?type=rect&color=auto&height=40&section=header&text=Connect&fontSize=22&fontColor=fff)
 
 <div align="center">
-  <a href="https://www.linkedin.com/in/swarnabha-banerjee/">LinkedIn</a> ·
-  <a href="https://codeforces.com/profile/sb0252">Codeforces</a> ·
-  <a href="https://orcid.org/0009-0001-5624-6320">ORCID</a> ·
-  <a href="https://swarnabha0252.github.io/">Portfolio</a>
+
+[![Website](https://img.shields.io/badge/Website-4285F4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://swarnabha0252.github.io/) [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:swarnabhab.civil.ug@jadavpuruniversity.in) [![Codeforces](https://img.shields.io/badge/Codeforces-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white)](https://codeforces.com/profile/sb0252) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/swarnabha-banerjee) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/swarnabha0252)
+
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2b6cb0,100:1e2327&height=100&section=footer" width="100%"/>
+![Footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,20,30&height=100&section=footer)
