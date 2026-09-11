@@ -1,19 +1,20 @@
 name: Update GitHub Stats
 
 on:
+  workflow_dispatch:
+
   schedule:
     - cron: "0 */6 * * *"
-
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  generate-stats:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -33,13 +34,16 @@ jobs:
           path: profile/top-langs.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit generated cards
+      - name: Commit statistics
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add profile/*.svg
+          git add profile/stats.svg profile/top-langs.svg
 
-          git diff --cached --quiet || git commit -m "Update GitHub stats"
-
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes detected."
+          else
+            git commit -m "Update GitHub statistics"
+            git push
+          fi
