@@ -68,19 +68,13 @@ I'm a sophomore studying **Civil Engineering at Jadavpur University**, and I'm a
 <div align="center">
 
 <a href="https://github.com/swarnabha0252">
-<img
-  height="180"
-  src="./profile/stats.svg"
-  alt="GitHub Stats"
-/>
-</a>
 
-<a href="https://github.com/swarnabha0252">
 <img
-  height="180"
-  src="./profile/top-langs.svg"
-  alt="Top Languages"
+src="./profile/stats.svg"
+width="900"
+alt="GitHub Activity Statistics"
 />
+
 </a>
 
 </div>
