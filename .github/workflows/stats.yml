@@ -28,7 +28,7 @@ jobs:
       # ---------------------------------------------------------
       - name: Generate statistics
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
 
           python3 <<'PY'
@@ -51,8 +51,7 @@ jobs:
 
           if not TOKEN:
               raise RuntimeError(
-                  "GH_PAT secret is missing. "
-                  "Create a repository secret named GH_PAT."
+                  "GitHub token is missing."
               )
 
 
