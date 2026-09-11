@@ -16,14 +16,6 @@
 
 I'm a sophomore studying **Civil Engineering at Jadavpur University**, and I'm also pursuing a **B.S. in Data Science and Applications from IIT Madras**. I like taking problems from one field and solving them with tools from another — most of my projects come from that overlap between engineering, science, and machine learning.
 
-<br>
-
-- Studying **Civil Engineering** at **Jadavpur University, Kolkata** — also pursuing a **B.S. in Data Science** at **IIT Madras** (currently at Diploma level)
-- Currently learning **cosmology and computational physics**, alongside deep learning
-- Ask me about **concrete strength prediction with ML, stellar classification, or ONNX Runtime Web**
-- Ranked in the **top 4% among 100,000+ candidates** in WBJEE, and top 3% nationally in IAT and NEST
-
-<br>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12,20,30&height=45&section=header&text=Tech%20Stack&fontSize=22&fontColor=fff" width="100%"/>
 
