@@ -69,31 +69,19 @@ I'm a sophomore studying **Civil Engineering at Jadavpur University**, and I'm a
 
 <a href="https://github.com/swarnabha0252">
 <img
-  height="180"
-  src="https://github-readme-stats.vercel.app/api?username=swarnabha0252&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&theme=transparent"
+  width="495"
+  src="https://github-readme-stats.vercel.app/api?username=swarnabha0252&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&theme=transparent&cache_seconds=300"
   alt="Swarnabha's GitHub Stats"
 />
 </a>
 
 <a href="https://github.com/swarnabha0252">
 <img
-  height="180"
-  src="https://github-readme-stats.vercel.app/api/top-langs/?username=swarnabha0252&layout=compact&langs_count=8&hide_border=true&theme=transparent"
+  width="495"
+  src="https://github-readme-stats.vercel.app/api/top-langs/?username=swarnabha0252&layout=compact&langs_count=8&hide_border=true&theme=transparent&cache_seconds=300"
   alt="Top Languages"
 />
 </a>
-
-</div>
-
-<br>
-
-<div align="center">
-
-<img
-  height="180"
-  src="https://github-readme-streak-stats.herokuapp.com/?user=swarnabha0252&hide_border=true&theme=transparent"
-  alt="GitHub Streak"
-/>
 
 </div>
 
