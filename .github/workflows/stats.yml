@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
   schedule:
+    # Every 6 hours
     - cron: "0 */6 * * *"
 
 permissions:
@@ -14,35 +15,686 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # ---------------------------------------------------------
+      # Checkout repository
+      # ---------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate GitHub Stats
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: stats
-          options: "username=swarnabha0252&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&theme=transparent"
-          path: profile/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate Top Languages
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: top-langs
-          options: "username=swarnabha0252&layout=compact&langs_count=8&hide=jupyter%20notebook&hide_border=true&theme=transparent"
-          path: profile/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # ---------------------------------------------------------
+      # Generate custom GitHub statistics SVG
+      # ---------------------------------------------------------
+      - name: Generate statistics
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+
+          python3 <<'PY'
+          import os
+          import json
+          import urllib.request
+          import urllib.error
+          from datetime import datetime, timedelta, timezone
+          from pathlib import Path
+          from html import escape
+
+
+          # =====================================================
+          # CONFIGURATION
+          # =====================================================
+
+          USERNAME = "swarnabha0252"
+
+          TOKEN = os.environ.get("GH_TOKEN")
+
+          if not TOKEN:
+              raise RuntimeError(
+                  "GH_PAT secret is missing. "
+                  "Create a repository secret named GH_PAT."
+              )
+
+
+          # =====================================================
+          # DATE RANGE
+          #
+          # GitHub profile contribution counter = trailing year
+          # =====================================================
+
+          now = datetime.now(timezone.utc)
+
+          one_year_ago = now - timedelta(days=365)
+
+          FROM = one_year_ago.strftime("%Y-%m-%dT%H:%M:%SZ")
+          TO = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+          # =====================================================
+          # GRAPHQL QUERY
+          #
+          # contributionCalendar.totalContributions is the
+          # authoritative contribution-calendar total.
+          #
+          # We also retrieve individual contribution categories.
+          # =====================================================
+
+          query = """
+          query($login: String!, $from: DateTime!, $to: DateTime!) {
+
+            user(login: $login) {
+
+              name
+              login
+
+              contributionsCollection(
+                from: $from
+                to: $to
+              ) {
+
+                contributionCalendar {
+                  totalContributions
+
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                      weekday
+                    }
+                  }
+                }
+
+                totalCommitContributions
+                totalPullRequestContributions
+                totalIssueContributions
+                totalPullRequestReviewContributions
+                totalRepositoryContributions
+
+                restrictedContributionsCount
+
+                commitContributionsByRepository(
+                  maxRepositories: 100
+                ) {
+                  contributions {
+                    totalCount
+                  }
+
+                  repository {
+                    name
+                    nameWithOwner
+                  }
+                }
+              }
+            }
+          }
+          """
+
+
+          variables = {
+              "login": USERNAME,
+              "from": FROM,
+              "to": TO
+          }
+
+
+          payload = json.dumps({
+              "query": query,
+              "variables": variables
+          }).encode("utf-8")
+
+
+          request = urllib.request.Request(
+              "https://api.github.com/graphql",
+              data=payload,
+              headers={
+                  "Authorization": f"Bearer {TOKEN}",
+                  "Content-Type": "application/json",
+                  "User-Agent": USERNAME
+              },
+              method="POST"
+          )
+
+
+          # =====================================================
+          # CALL GITHUB GRAPHQL API
+          # =====================================================
+
+          try:
+
+              with urllib.request.urlopen(request) as response:
+                  result = json.loads(response.read().decode("utf-8"))
+
+          except urllib.error.HTTPError as e:
+
+              body = e.read().decode("utf-8", errors="replace")
+
+              print(body)
+
+              raise RuntimeError(
+                  f"GitHub GraphQL request failed: HTTP {e.code}"
+              )
+
+
+          if "errors" in result:
+
+              print(json.dumps(result["errors"], indent=2))
+
+              raise RuntimeError(
+                  "GitHub GraphQL returned errors."
+              )
+
+
+          user = result["data"]["user"]
+
+          if not user:
+              raise RuntimeError(
+                  f"GitHub user '{USERNAME}' was not found."
+              )
+
+
+          contributions = user["contributionsCollection"]
+
+          calendar = contributions["contributionCalendar"]
+
+
+          # =====================================================
+          # REAL GITHUB CONTRIBUTION DATA
+          # =====================================================
+
+          total_contributions = calendar["totalContributions"]
+
+          commits = contributions["totalCommitContributions"]
+
+          pull_requests = contributions[
+              "totalPullRequestContributions"
+          ]
+
+          issues = contributions[
+              "totalIssueContributions"
+          ]
+
+          reviews = contributions[
+              "totalPullRequestReviewContributions"
+          ]
+
+          repositories = contributions[
+              "totalRepositoryContributions"
+          ]
+
+          restricted = contributions[
+              "restrictedContributionsCount"
+          ]
+
+
+          # =====================================================
+          # FIND MOST ACTIVE CONTRIBUTION DAY
+          # =====================================================
+
+          days = []
+
+          for week in calendar["weeks"]:
+
+              for day in week["contributionDays"]:
+
+                  days.append(day)
+
+
+          busiest_day = max(
+              days,
+              key=lambda x: x["contributionCount"]
+          )
+
+          busiest_day_count = busiest_day[
+              "contributionCount"
+          ]
+
+
+          # =====================================================
+          # CALCULATE TOTAL CONTRIBUTION DAYS
+          # =====================================================
+
+          active_days = sum(
+              1
+              for day in days
+              if day["contributionCount"] > 0
+          )
+
+
+          # =====================================================
+          # TOP CONTRIBUTED REPOSITORIES
+          # =====================================================
+
+          repo_data = []
+
+          for item in contributions[
+              "commitContributionsByRepository"
+          ]:
+
+              repo = item["repository"]
+
+              count = item["contributions"]["totalCount"]
+
+              repo_data.append(
+                  (
+                      repo["name"],
+                      repo["nameWithOwner"],
+                      count
+                  )
+              )
+
+
+          repo_data.sort(
+              key=lambda x: x[2],
+              reverse=True
+          )
+
+
+          top_repos = repo_data[:5]
+
+
+          # =====================================================
+          # SVG HELPERS
+          # =====================================================
+
+          def text(
+              x,
+              y,
+              value,
+              size=14,
+              weight=400,
+              fill="#ffffff",
+              anchor="start"
+          ):
+
+              return (
+                  f'<text x="{x}" y="{y}" '
+                  f'font-family="Arial, Helvetica, sans-serif" '
+                  f'font-size="{size}px" '
+                  f'font-weight="{weight}" '
+                  f'fill="{fill}" '
+                  f'text-anchor="{anchor}">'
+                  f'{escape(str(value))}'
+                  f'</text>'
+              )
+
+
+          def rounded_rect(
+              x,
+              y,
+              width,
+              height,
+              radius=12,
+              fill="#000000",
+              opacity="1"
+          ):
+
+              return (
+                  f'<rect x="{x}" y="{y}" '
+                  f'width="{width}" height="{height}" '
+                  f'rx="{radius}" '
+                  f'fill="{fill}" '
+                  f'fill-opacity="{opacity}"/>'
+              )
+
+
+          # =====================================================
+          # SVG DESIGN
+          #
+          # Same transparent/minimal aesthetic as your README.
+          # =====================================================
+
+          WIDTH = 900
+          HEIGHT = 390
+
+
+          svg = []
+
+          svg.append(
+              f'<svg xmlns="http://www.w3.org/2000/svg" '
+              f'width="{WIDTH}" height="{HEIGHT}" '
+              f'viewBox="0 0 {WIDTH} {HEIGHT}">'
+          )
+
+
+          # Transparent background
+
+          svg.append(
+              '<rect width="100%" height="100%" '
+              'rx="16" fill="transparent"/>'
+          )
+
+
+          # =====================================================
+          # TITLE
+          # =====================================================
+
+          svg.append(
+              text(
+                  35,
+                  42,
+                  "GitHub Activity",
+                  size=24,
+                  weight=700
+              )
+          )
+
+          svg.append(
+              text(
+                  865,
+                  42,
+                  "Last 12 months",
+                  size=13,
+                  weight=400,
+                  fill="#8b949e",
+                  anchor="end"
+              )
+          )
+
+
+          # =====================================================
+          # MAIN CONTRIBUTION CARD
+          # =====================================================
+
+          svg.append(
+              rounded_rect(
+                  25,
+                  65,
+                  850,
+                  95,
+                  radius=14,
+                  fill="#161b22"
+              )
+          )
+
+
+          svg.append(
+              text(
+                  50,
+                  95,
+                  "Contributions",
+                  size=13,
+                  weight=500,
+                  fill="#8b949e"
+              )
+          )
+
+
+          svg.append(
+              text(
+                  50,
+                  138,
+                  total_contributions,
+                  size=34,
+                  weight=700,
+                  fill="#ffffff"
+              )
+          )
+
+
+          svg.append(
+              text(
+                  210,
+                  136,
+                  "from GitHub's contribution calendar",
+                  size=13,
+                  weight=400,
+                  fill="#8b949e"
+              )
+          )
+
+
+          # =====================================================
+          # STAT BOXES
+          # =====================================================
+
+          box_y = 180
+
+          box_width = 198
+
+          gap = 16
+
+          stats = [
+              ("Commits", commits),
+              ("Pull Requests", pull_requests),
+              ("Issues", issues),
+              ("PR Reviews", reviews)
+          ]
+
+
+          for index, (label, value) in enumerate(stats):
+
+              x = 25 + index * (box_width + gap)
+
+              svg.append(
+                  rounded_rect(
+                      x,
+                      box_y,
+                      box_width,
+                      85,
+                      radius=12,
+                      fill="#161b22"
+                  )
+              )
+
+              svg.append(
+                  text(
+                      x + 18,
+                      box_y + 28,
+                      label,
+                      size=12,
+                      weight=500,
+                      fill="#8b949e"
+                  )
+              )
+
+              svg.append(
+                  text(
+                      x + 18,
+                      box_y + 63,
+                      value,
+                      size=25,
+                      weight=700,
+                      fill="#ffffff"
+                  )
+              )
+
+
+          # =====================================================
+          # SECONDARY INFORMATION
+          # =====================================================
+
+          svg.append(
+              rounded_rect(
+                  25,
+                  285,
+                  410,
+                  80,
+                  radius=12,
+                  fill="#161b22"
+              )
+          )
+
+          svg.append(
+              text(
+                  45,
+                  312,
+                  "Active contribution days",
+                  size=12,
+                  fill="#8b949e"
+              )
+          )
+
+          svg.append(
+              text(
+                  45,
+                  345,
+                  active_days,
+                  size=23,
+                  weight=700
+              )
+          )
+
+
+          svg.append(
+              text(
+                  125,
+                  344,
+                  "days",
+                  size=12,
+                  fill="#8b949e"
+              )
+          )
+
+
+          svg.append(
+              rounded_rect(
+                  455,
+                  285,
+                  420,
+                  80,
+                  radius=12,
+                  fill="#161b22"
+              )
+          )
+
+          svg.append(
+              text(
+                  475,
+                  312,
+                  "Busiest contribution day",
+                  size=12,
+                  fill="#8b949e"
+              )
+          )
+
+          svg.append(
+              text(
+                  475,
+                  345,
+                  f"{busiest_day['date']}",
+                  size=18,
+                  weight=700
+              )
+          )
+
+          svg.append(
+              text(
+                  610,
+                  344,
+                  f"{busiest_day_count} contributions",
+                  size=12,
+                  fill="#8b949e"
+              )
+          )
+
+
+          # =====================================================
+          # FOOTER
+          # =====================================================
+
+          svg.append(
+              text(
+                  450,
+                  382,
+                  "Data fetched directly from GitHub GraphQL API",
+                  size=10,
+                  fill="#6e7681",
+                  anchor="middle"
+              )
+          )
+
+
+          svg.append("</svg>")
+
+
+          # =====================================================
+          # WRITE SVG
+          # =====================================================
+
+          output = Path("profile/stats.svg")
+
+          output.parent.mkdir(
+              parents=True,
+              exist_ok=True
+          )
+
+          output.write_text(
+              "\n".join(svg),
+              encoding="utf-8"
+          )
+
+
+          # =====================================================
+          # PRINT DATA TO ACTION LOG
+          # =====================================================
+
+          print("")
+          print("==============================================")
+          print(" GitHub Statistics")
+          print("==============================================")
+          print(f"Contributions : {total_contributions}")
+          print(f"Commits      : {commits}")
+          print(f"Pull Requests: {pull_requests}")
+          print(f"Issues       : {issues}")
+          print(f"PR Reviews   : {reviews}")
+          print(f"Repositories : {repositories}")
+          print(f"Active Days  : {active_days}")
+          print(f"Restricted   : {restricted}")
+          print("==============================================")
+          print("")
+
+
+          # =====================================================
+          # SAVE RAW DATA FOR DEBUGGING
+          # =====================================================
+
+          Path("profile/data.json").write_text(
+              json.dumps(
+                  {
+                      "username": USERNAME,
+                      "from": FROM,
+                      "to": TO,
+                      "contributions": total_contributions,
+                      "commits": commits,
+                      "pull_requests": pull_requests,
+                      "issues": issues,
+                      "reviews": reviews,
+                      "repositories": repositories,
+                      "active_days": active_days,
+                      "restricted": restricted,
+                      "busiest_day": busiest_day
+                  },
+                  indent=2
+              ),
+              encoding="utf-8"
+          )
+
+          PY
+
+
+      # ---------------------------------------------------------
+      # Commit generated SVG
+      # ---------------------------------------------------------
 
       - name: Commit statistics
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add profile/stats.svg profile/top-langs.svg
+          git config user.name "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add profile/stats.svg profile/data.json
 
           if git diff --cached --quiet; then
+
             echo "No changes detected."
+
           else
-            git commit -m "Update GitHub statistics"
+
+            git commit \
+              -m "Update GitHub contribution statistics"
+
             git push
+
           fi
