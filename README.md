@@ -61,26 +61,6 @@ I'm a sophomore studying **Civil Engineering at Jadavpur University**, and I'm a
 
 <br>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12,20,30&height=45&section=header&text=GitHub%20Stats&fontSize=22&fontColor=fff" width="100%"/>
-
-<br>
-
-<div align="center">
-
-<a href="https://github.com/swarnabha0252">
-
-<img
-src="./profile/stats.svg"
-width="900"
-alt="GitHub Activity Statistics"
-/>
-
-</a>
-
-</div>
-
-<br>
-
 <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=12,20,30&height=45&section=header&text=Connect&fontSize=22&fontColor=fff" width="100%"/>
 
 <br>
