@@ -92,19 +92,7 @@ I'm a sophomore studying **Civil Engineering at Jadavpur University**, and I'm a
 <img 
 height="180"
 src="https://github-readme-streak-stats.herokuapp.com/?user=swarnabha0252&hide_border=true&theme=transparent"
-alt="GitHub Contribution Streak"
-/>
-
-</div>
-
-<br>
-
-<div align="center">
-
-<img
-src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=swarnabha0252&theme=github"
-width="100%"
-alt="GitHub Contribution Graph"
+alt="GitHub Streak"
 />
 
 </div>
