@@ -8,7 +8,7 @@
 <text x="210" y="136" font-family="Arial, Helvetica, sans-serif" font-size="13px" font-weight="400" fill="#8b949e" text-anchor="start">from GitHub&#x27;s contribution calendar</text>
 <rect x="25" y="180" width="198" height="85" rx="12" fill="#161b22" fill-opacity="1"/>
 <text x="43" y="208" font-family="Arial, Helvetica, sans-serif" font-size="12px" font-weight="500" fill="#8b949e" text-anchor="start">Commits</text>
-<text x="43" y="243" font-family="Arial, Helvetica, sans-serif" font-size="25px" font-weight="700" fill="#ffffff" text-anchor="start">85</text>
+<text x="43" y="243" font-family="Arial, Helvetica, sans-serif" font-size="25px" font-weight="700" fill="#ffffff" text-anchor="start">100</text>
 <rect x="239" y="180" width="198" height="85" rx="12" fill="#161b22" fill-opacity="1"/>
 <text x="257" y="208" font-family="Arial, Helvetica, sans-serif" font-size="12px" font-weight="500" fill="#8b949e" text-anchor="start">Pull Requests</text>
 <text x="257" y="243" font-family="Arial, Helvetica, sans-serif" font-size="25px" font-weight="700" fill="#ffffff" text-anchor="start">0</text>
